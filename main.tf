@@ -39,14 +39,12 @@ resource "google_storage_bucket" "tragic-mulot" {
   }
 }
 
-
 resource "google_storage_bucket" "diggler-bucket2" {
   name          = "darth_diggler"
   location      = "us-west1"
   force_destroy = true
 
 }
-
 
 resource "google_compute_network" "diggler-auto-vpc-tf" {
   name = "diggler-auto-vpc-tf"
@@ -55,11 +53,10 @@ resource "google_compute_network" "diggler-auto-vpc-tf" {
 
 resource "google_compute_subnetwork" "diggler-sub-sg" {
   name ="diggler-sub-sg"
-  network = google_compute_network.auto-vpc-tf.id
+  network = google_compute_network.diggler-auto-vpc-tf.id
   ip_cidr_range = "10.161.1.0/24"
   region = "southamerica-east1"
 }
-
 
 #resource "google_compute_network" "custom-vpc-tf" {
   #name = "custom-vpc-tf"
@@ -67,7 +64,7 @@ resource "google_compute_subnetwork" "diggler-sub-sg" {
 #}
 
 output "auto" {
-  value = google_compute_network.auto-vpc-tf.id
+  value = google_compute_network.diggler-auto-vpc-tf.id
 }
 
 #output "custom" {
